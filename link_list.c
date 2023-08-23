@@ -89,7 +89,7 @@ size_t print_stack(const stack_t *head)
 		i++;
 	}
 
-	return(i);
+	return (i);
 }
 
 /**

@@ -9,11 +9,12 @@
  *
  * Return: nothing
  */
-void opcode_pstr(stack_t **head, unsigned int line_counters __attribute__((unused)))
+void opcode_pstr(stack_t **head, unsigned int
+		line_counters __attribute__((unused)))
 {
 	stack_t *current = *head;
 
-	while(current)
+	while (current)
 	{
 		if (current->n <= 0 || current->n > 127)
 			break;

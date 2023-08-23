@@ -7,7 +7,7 @@
  *
  * Return: nothing
  */
-void opcode_pchar(stack_t ** head, unsigned int line_counters)
+void opcode_pchar(stack_t **head, unsigned int line_counters)
 {
 	if (!head || !((*head)))
 	{
