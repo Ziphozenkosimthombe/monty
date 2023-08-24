@@ -2,17 +2,17 @@
 
 /**
  * opcode_pint - The value will be printed at the top of the head
- * @head: given by the main
- * @line_counters: total amount of lines
+ * @stack: given by the main
+ * @amount: total amount of lines
  *
  * Return: nothing or void
  */
-void opcode_pint(stack_t **head, unsigned int line_counters)
+void opcode_pint(stack_t **stack, unsigned int amount)
 {
-	if (!head || !(*head))
+	if (!stack || !(*stack))
 	{
-		fprintf(stderr, "L%d:  can't pint, stack empty\n", line_counters);
+		fprintf(stderr, "L%d:  can't pint, stack empty\n", amount);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", (*head)->n);
+	printf("%d\n", (*stack)->n);
 }

@@ -2,22 +2,22 @@
 
 /**
  * opcode_add - it will add the first two node at the head
- * @head: head given by the main
- * @line_counters: counnts the total lines
+ * @stack: head given by the main
+ * @amount: counnts the total lines
  *
  * Return: nothing or void
  */
-void opcode_add(stack_t **head, unsigned int line_counters)
+void opcode_add(stack_t **stack, unsigned int amount)
 {
 	int checker;
 
-	if (!head || !*head || !((*head)->next))
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_counters);
+		fprintf(stderr, "L%d: can't add, stack too short\n", amount);
 		exit(EXIT_FAILURE);
 	}
 
-	checker = ((*head)->next->n) + ((*head)->n);
-	opcode_pop(head, line_counters);
-	(*head)->n = checker;
+	checker = ((*stack)->next->n) + ((*stack)->n);
+	opcode_pop(stack, amount);
+	(*stack)->n = checker;
 }

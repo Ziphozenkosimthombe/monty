@@ -2,23 +2,23 @@
 
 /**
  * opcode_mul - It multiply the next top value by the top value
- * @head: The head given by the main
- * @line_counters: total amount of lines
+ * @stack: The head given by the main
+ * @amount: total amount of lines
  *
  * Return: nothing
  */
-void opcode_mul(stack_t **head, unsigned int line_counters)
+void opcode_mul(stack_t **stack, unsigned int amount)
 {
 	int checker;
 
-	if (!head || !*head || !((*head)->next))
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_counters);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", amount);
 		exit(EXIT_FAILURE);
 		return;
 	}
 
-	checker = ((*head)->next->n) * ((*head)->n);
-	opcode_pop(head, line_counters);
-	(*head)->n = checker;
+	checker = ((*stack)->next->n) * ((*stack)->n);
+	opcode_pop(stack, amount);
+	(*stack)->n = checker;
 }

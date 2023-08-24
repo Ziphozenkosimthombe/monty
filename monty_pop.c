@@ -3,25 +3,25 @@
 /**
  * opcode_pop - it will pop everything  in the top element
  * of the head
- * @head: the head that is given by the main
- * @line_counters: This will be the line number for message error
+ * @stack: the head that is given by the main
+ * @amount: This will be the line number for message error
  *
  * Return: nothing
  */
-void opcode_pop(stack_t **head, unsigned int line_counters)
+void opcode_pop(stack_t **stack, unsigned int amount)
 {
-	stack_t *tmp = NULL;
+	stack_t *temp = NULL;
 
-	if (!head || !*head)
+	if (!stack || !*stack)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line_counters);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", amount);
 		exit(EXIT_FAILURE);
 	}
 
-	tmp = (*head)->next;
-	free(*head);
-	*head = tmp;
-	if (!*head)
+	temp = (*stack)->next;
+	free(*stack);
+	*stack = temp;
+	if (!*stack)
 		return;
-	(*head)->prev = NULL;
+	(*stack)->prev = NULL;
 }

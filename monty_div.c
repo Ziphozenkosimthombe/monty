@@ -2,29 +2,28 @@
 
 /**
  * opcode_div - it will divide the next top value by the top value
- * @head: the head given by the main
- * @line_counters: count the total amount lines
+ * @stack: the head given by the main
+ * @amount: count the total amount lines
  *
  * Return: nothing
  */
-void opcode_div(stack_t **head, unsigned int line_counters)
+void opcode_div(stack_t **stack, unsigned int amount)
 {
 	int checker;
 
-	if (!head || !*head || !((*head)->next))
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", line_counters);
+		fprintf(stderr, "L%d: can't div, stack too short\n", amount);
 		exit(EXIT_FAILURE);
 	}
-	if (((*head)->n) == 0)
+	if (((*stack)->n) == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", line_counters);
+		fprintf(stderr, "L%d: division by zero\n", amount);
 		exit(EXIT_FAILURE);
-		;
 		return;
 	}
 
-	checker = ((*head)->next->n) / ((*head)->n);
-	opcode_pop(head, line_counters);
-	(*head)->n = checker;
+	checker = ((*stack)->next->n) / ((*stack)->n);
+	opcode_pop(stack, amount);
+	(*stack)->n = checker;
 }

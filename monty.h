@@ -1,6 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
-#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -77,35 +77,35 @@ typedef struct help
 	char *argument;
 } help;
 help global;
-int main(int argc, char **argv);
+
 int is_digit(char *string);
 int isnumber(char *str);
 
-void opcode(stack_t **head, char *str, unsigned int line_counters);
+void opcode(stack_t **stack, char *str, unsigned int amount);
 
-void opcode_rotr(stack_t **head, unsigned int line_counters);
-void opcode_pchar(stack_t **head, unsigned int line_counters);
-void opcode_rotl(stack_t **head, unsigned int line_counters);
-void opcode_pstr(stack_t **head, unsigned int line_counters);
+void opcode_rotr(stack_t **stack, unsigned int line_counters);
+void opcode_pchar(stack_t **stack, unsigned int amount);
+void opcode_rotl(stack_t **stack, unsigned int line_counters);
+void opcode_pstr(stack_t **stack, unsigned int amount);
 
-void opcode_mod(stack_t **head, unsigned int line_counters);
-void opcode_div(stack_t **head, unsigned int line_counters);
-void opcode_sub(stack_t **head, unsigned int line_counters);
-void opcode_add(stack_t **head, unsigned int line_counters);
-void opcode_mul(stack_t **head, unsigned int line_counters);
+void opcode_mod(stack_t **stack, unsigned int amount);
+void opcode_div(stack_t **stack, unsigned int amount);
+void opcode_sub(stack_t **stack, unsigned int amount);
+void opcode_add(stack_t **stack, unsigned int amount);
+void opcode_mul(stack_t **stack, unsigned int amount);
 
-void opcode_push(stack_t **head, unsigned int line_counters);
-void opcode_swap(stack_t **head, unsigned int line_counters);
-void opcode_nop(stack_t **head, unsigned int line_counters);
-void opcode_pop(stack_t **head, unsigned int line_counters);
-void opcode_pint(stack_t **gead, unsigned int line_counters);
-void opcode_pall(stack_t **head, unsigned int line_counters);
+void opcode_push(stack_t **stack, unsigned int amount);
+void opcode_swap(stack_t **stack, unsigned int amount);
+void opcode_nop(stack_t **stack, unsigned int amount);
+void opcode_pop(stack_t **stack, unsigned int amount);
+void opcode_pint(stack_t **stack, unsigned int amount);
+void opcode_pall(stack_t **stack, unsigned int amount);
 
 
-stack_t *add_node(stack_t **head, const int n);
-size_t print_stack(const stack_t *head);
-stack_t *queue_node(stack_t **head, const int n);
-void free_stack(stack_t *head);
+stack_t *add_node(stack_t **stack, const int n);
+size_t print_stack(const stack_t *stack);
+stack_t *queue_node(stack_t **stack, const int n);
+void free_stack(stack_t *stack);
 
 
 #endif

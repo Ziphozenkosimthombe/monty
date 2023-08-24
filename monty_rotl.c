@@ -2,27 +2,27 @@
 
 /**
  * opcode_rotl - the first element will be rotated
- * @head: header
+ * @stack: header
  * @line_counters: total amount of lines
  *
  * Return: nothing
  */
-void opcode_rotl(stack_t **head, unsigned int line_counters)
+void opcode_rotl(stack_t **stack, unsigned int line_counters)
 {
 	stack_t *left;
 	stack_t *right;
 
 	(void) line_counters;
-	if (!head || !*head || !(*head)->next)
+	if (!stack || !*stack || !(*stack)->next)
 		return;
 
-	left = right = *head;
+	left = right = *stack;
 
 	while (right->next)
 		right = right->next;
 	right->next = left;
 	left->prev = right;
-	*head = left->next;
-	(*head)->prev->next = NULL;
-	(*head)->prev = NULL;
+	*stack = left->next;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
 }

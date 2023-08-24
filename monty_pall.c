@@ -2,13 +2,12 @@
 
 /**
  * opcode_pall - It print the head
- * @head: The head that is given by the main
- * @line_counters: counts the total of lines
+ * @stack: The head that is given by the main
+ * @amount: counts the total of lines
  *
  * Return: nothing
  */
-void opcode_pall(stack_t **head, unsigned int
-		line_counters __attribute__((unused)))
+void opcode_pall(stack_t **stack, unsigned int amount __attribute__((unused)))
 {
-	print_stack(*head);
+	print_stack(*stack);
 }

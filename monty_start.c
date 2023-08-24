@@ -1,6 +1,8 @@
-#define _POSIX_CSOURCE 200809L
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void file_error(char *argv);
 void error_usage(void);
@@ -19,12 +21,13 @@ int main(int argc, char **argv)
 	size_t buf_len = 0;
 	char *buffer = NULL;
 	char *str = NULL;
-	stack_t *head = NULL;
-	unsigned int line_counters = 1;
+	stack_t *stack = NULL;
+	unsigned int amount = 1;
 
 	global.data_struct = 1;
 	if (argc != 2)
 		error_usage();
+
 	file = fopen(argv[1], "r");
 
 	if (!file)
@@ -36,21 +39,21 @@ int main(int argc, char **argv)
 			break;
 		if (*buffer == '\n')
 		{
-			line_counters++;
+			amount++;
 			continue;
 		}
 		str = strtok(buffer, " \t\n");
 		if (!str || *str == '#')
 		{
-			line_counters++;
+			amount++;
 			continue;
 		}
 		global.argument = strtok(NULL, " \t\n");
-		opcode(&head, str, line_counters);
-		line_counters++;
+		opcode(&stack, str, amount);
+		amount++;
 	}
 	free(buffer);
-	free_stack(head);
+	free_stack(stack);
 	fclose(file);
 	exit(EXIT_SUCCESS);
 }

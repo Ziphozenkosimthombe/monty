@@ -3,16 +3,15 @@
 /**
  * opcode_pstr - it will print all the content of the stack_t
  * head as a string
- * @head: the head that is given by the main
- * @line_counters: the total amount of lines for the
+ * @stack: the head that is given by the main
+ * @amount: the total amount of lines for the
  * error message
  *
  * Return: nothing
  */
-void opcode_pstr(stack_t **head, unsigned int
-		line_counters __attribute__((unused)))
+void opcode_pstr(stack_t **stack, unsigned int amount __attribute__((unused)))
 {
-	stack_t *current = *head;
+	stack_t *current = *stack;
 
 	while (current)
 	{

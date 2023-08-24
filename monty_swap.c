@@ -2,25 +2,25 @@
 
 /**
  * opcode_swap - the data will be swap from top to the previous
- * @head: the head that is given by the main
- * @line_counters: total amount of lines
+ * @stack: the head that is given by the main
+ * @amount: total amount of lines
  *
  * Return: nothing
  */
-void opcode_swap(stack_t **head, unsigned int line_counters)
+void opcode_swap(stack_t **stack, unsigned int amount)
 {
-	stack_t *tmp = NULL;
-	int tmp_i = 0;
+	stack_t *temp = NULL;
+	int temp_n = 0;
 
-	if (!head || !*head || !((*head)->next))
+	if (!stack || !*stack || !((*stack)->next))
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_counters);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", amount);
 		exit(EXIT_FAILURE);
 	}
-	tmp = *head;
-	tmp_i = tmp->n;
-	tmp->n = tmp_i;
+	temp = *stack;
+	temp_n = temp->n;
+	temp->n = temp_n;
 
-	tmp->n = tmp->next->n;
-	tmp->next->n = tmp_i;
+	temp->n = temp->next->n;
+	temp->next->n = temp_n;
 }

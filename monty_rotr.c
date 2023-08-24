@@ -2,28 +2,28 @@
 
 /**
  * opcode_rotr - the last node of stack_t head will be rotated
- * @head: header stack
+ * @stack: header stack
  * @line_counters: totala amount of line
  *
  * Return: nothing
  */
-void opcode_rotr(stack_t **head, unsigned int line_counters)
+void opcode_rotr(stack_t **stack, unsigned int line_counters)
 {
 	stack_t *bottom;
 	stack_t *prev;
 
 	(void) line_counters;
-	if (!head || !*head || !(*head)->next)
+	if (!stack || !*stack || !(*stack)->next)
 		return;
-	bottom = *head;
+	bottom = *stack;
 
 	while (bottom->next)
 		bottom = bottom->next;
 
 	prev = bottom->prev;
-	bottom->next = *head;
+	bottom->next = *stack;
 	bottom->prev = NULL;
 	prev->next = NULL;
-	(*head)->prev = bottom;
-	*head = bottom;
+	(*stack)->prev = bottom;
+	*stack = bottom;
 }

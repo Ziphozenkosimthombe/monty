@@ -2,13 +2,13 @@
 
 /**
  * opcode_nop - do not do anything
- * @head: doesn't needed
- * @line_counters: nothing
+ * @stack: doesn't needed
+ * @amount: nothing
  *
  * Return: nothing
  */
-void opcode_nop(stack_t **head, unsigned int line_counters)
+void opcode_nop(stack_t **stack, unsigned int amount)
 {
-	(void) head;
-	(void) line_counters;
+	(void) stack;
+	(void) amount;
 }

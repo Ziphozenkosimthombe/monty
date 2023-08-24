@@ -5,21 +5,26 @@
 
 /**
  * opcode - function that is in the charge of running builtins
- * @head: head given by the main
+ * @stack: head given by the main
  * @str: The string to be compare
- * @line_counters: total amount of the lines
+ * @amount: total amount of the lines
  *
  * Return: void
  */
-void opcode(stack_t **head, char *str, unsigned int line_counters)
+void opcode(stack_t **stack, char *str, unsigned int amount)
 {
 	int n = 0;
 
 	instruction_t op[] = INSTRUCTIONS;
 
-	if (!strcmp(str, "head"))
+	if (!strcmp(str, "stack"))
 	{
 		global.data_struct = 1;
+		return;
+	}
+	if (!strcmp(str, "queue"))
+	{
+		global.data_struct = 0;
 		return;
 	}
 
@@ -27,11 +32,11 @@ void opcode(stack_t **head, char *str, unsigned int line_counters)
 	{
 		if (strcmp(op[n].opcode, str) == 0)
 		{
-			op[n].f(head, line_counters);
+			op[n].f(stack, amount);
 			return;
 		}
 		n++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_counters, str);
+	fprintf(stderr, "L%d: unknown instruction %s\n", amount, str);
 	exit(EXIT_FAILURE);
 }

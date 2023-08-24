@@ -2,16 +2,16 @@
 
 /**
  * queue_node - It will add the node to astack_t head in queue_node
- * @head: header
+ * @stack: header
  * @n: number of the node
  *
  * Return: The newly created node, if the memory allocaation it fails,
  * function return NULL.
  */
-stack_t *queue_node(stack_t **head, const int n)
+stack_t *queue_node(stack_t **stack, const int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
-	stack_t *current = *head;
+	stack_t *current = *stack;
 
 	if (!new)
 	{
@@ -20,17 +20,17 @@ stack_t *queue_node(stack_t **head, const int n)
 	}
 	new->n = n;
 
-	if (!*head)
+	if (!*stack)
 	{
 		new->next = NULL;
 		new->prev = NULL;
-		*head = new;
+		*stack = new;
 		return (new);
 	}
 
 	while (current)
 	{
-		if (current->next)
+		if (!current->next)
 		{
 			new->next = NULL;
 			new->prev = current;
@@ -44,13 +44,13 @@ stack_t *queue_node(stack_t **head, const int n)
 
 /**
  * add_node - It will add the node at the start of the stack_t head
- * @head: header
+ * @stack: header
  * @n: number of the new node
  *
  * Return: create new node, if creation fails,
  * the function will return NULL
  */
-stack_t *add_node(stack_t **head, const int n)
+stack_t *add_node(stack_t **stack, const int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
 
@@ -62,30 +62,30 @@ stack_t *add_node(stack_t **head, const int n)
 	}
 	new->n = n;
 
-	new->next = *head;
+	new->next = *stack;
 	new->prev = NULL;
-	if (*head)
-		(*head)->prev = new;
+	if (*stack)
+		(*stack)->prev = new;
 
-	*head = new;
+	*stack = new;
 
 	return (new);
 }
 
 /**
  * print_stack - it will print the content of the stack_t head
- * @head: header
+ * @stack: header
  *
  * Return: element of the list
  */
-size_t print_stack(const stack_t *head)
+size_t print_stack(const stack_t *stack)
 {
 	size_t i = 0;
 
-	while (head)
+	while (stack)
 	{
-		printf("%d\n", head->n);
-		head = head->next;
+		printf("%d\n", stack->n);
+		stack = stack->next;
 		i++;
 	}
 
@@ -94,18 +94,18 @@ size_t print_stack(const stack_t *head)
 
 /**
  * free_stack - it will free the dlistint_t linked list
- * @head: header
+ * @stack: header
  *
  * Return: nothing
  */
-void free_stack(stack_t *head)
+void free_stack(stack_t *stack)
 {
-	stack_t *current = head;
+	stack_t *current = stack;
 	stack_t *next;
 
-	if (head)
+	if (stack)
 	{
-		next = head->next;
+		next = stack->next;
 		while (current)
 		{
 			free(current);
