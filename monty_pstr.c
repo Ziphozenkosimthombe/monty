@@ -1,24 +1,27 @@
 #include "monty.h"
 
 /**
- * opcode_pstr - it will print all the content of the stack_t
- * head as a string
- * @stack: the head that is given by the main
- * @amount: the total amount of lines for the
- * error message
+ * opcode_pstr - the str will be printed starting at the top
+ * of the stack follow by a new stack
+ * @stack: head of stack
+ * @amount: line counter
  *
  * Return: nothing
  */
-void opcode_pstr(stack_t **stack, unsigned int amount __attribute__((unused)))
+void opcode_pstr(stack_t **stack, unsigned int amount)
 {
-	stack_t *current = *stack;
+	stack_t *h;
+	(void)amount;
 
-	while (current)
+	h = *stack;
+	while (h)
 	{
-		if (current->n <= 0 || current->n > 127)
+		if (h->n > 127 || h->n <= 0)
+		{
 			break;
-		putchar((char) current->n);
-		current = current->next;
+		}
+		printf("%c", h->n);
+		h = h->next;
 	}
-	putchar('\n');
+	printf("\n");
 }

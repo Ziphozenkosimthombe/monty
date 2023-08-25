@@ -1,27 +1,25 @@
 #include "monty.h"
 
 /**
- * opcode_pop - it will pop everything  in the top element
- * of the head
- * @stack: the head that is given by the main
- * @amount: This will be the line number for message error
+ * opcode_pop - the top will be printed
+ * @stack: head of stack
+ * @amount: line counter
  *
  * Return: nothing
  */
 void opcode_pop(stack_t **stack, unsigned int amount)
 {
-	stack_t *temp = NULL;
+	stack_t *h;
 
-	if (!stack || !*stack)
+	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", amount);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", amount);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-
-	temp = (*stack)->next;
-	free(*stack);
-	*stack = temp;
-	if (!*stack)
-		return;
-	(*stack)->prev = NULL;
+	h = *stack;
+	*stack = h->next;
+	free(h);
 }

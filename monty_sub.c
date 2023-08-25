@@ -1,23 +1,31 @@
 #include "monty.h"
 
 /**
- * opcode_sub - the node of the head will be substracted
- * @stack: the head that is given by the main
- * @amount: total amount of the lines
+ * opcode_sub - the subtration
+ * @stack: head of stack
+ * @amount: line counter
  *
  * Return: nothing
  */
 void opcode_sub(stack_t **stack, unsigned int amount)
 {
-	int checker;
+	stack_t *au;
+	int su, node;
 
-	if (!stack || !*stack || !((*stack)->next))
+	au = *stack;
+	for (node = 0; au != NULL; node++)
+		au = au->next;
+	if (node < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", amount);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
-
-	checker = ((*stack)->next->n) - ((*stack)->n);
-	opcode_pop(stack, amount);
-	(*stack)->n = checker;
+	au = *stack;
+	su = au->next->n - au->n;
+	au->next->n = su;
+	*stack = au->next;
+	free(au);
 }

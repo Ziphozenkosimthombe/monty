@@ -1,25 +1,33 @@
 #include "monty.h"
 
 /**
- * opcode_pchar - will print the int at the top of stack
- * @stack: stack given by the header
- * @amount: mount of lines
+ * opcode_pchar - the character at the top of the stack
+ * will be printed
+ * @stack: head of stack
+ * @amount: line counter
  *
  * Return: nothing
  */
 void opcode_pchar(stack_t **stack, unsigned int amount)
 {
-	if (!stack || !(*stack))
+	stack_t *h;
+
+	h = *stack;
+	if (!h)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", amount);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
-		return;
 	}
-	if (isascii((*stack)->n) == 0)
+	if (h->n > 127 || h->n < 0)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", amount);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
-		return;
 	}
-	printf("%c\n", (*stack)->n);
+	printf("%c\n", h->n);
 }

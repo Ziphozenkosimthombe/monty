@@ -1,13 +1,23 @@
-#include  "monty.h"
+#include "monty.h"
 
 /**
- * opcode_pall - It print the head
- * @stack: The head that is given by the main
- * @amount: counts the total of lines
+ * opcode_pall - the stack will be printed
+ * @stack: head of stack
+ * @amount: didn't used
  *
  * Return: nothing
  */
-void opcode_pall(stack_t **stack, unsigned int amount __attribute__((unused)))
+void opcode_pall(stack_t **stack, unsigned int amount)
 {
-	print_stack(*stack);
+	stack_t *h;
+	(void)amount;
+
+	h = *stack;
+	if (h == NULL)
+		return;
+	while (h)
+	{
+		printf("%d\n", h->n);
+		h = h->next;
+	}
 }

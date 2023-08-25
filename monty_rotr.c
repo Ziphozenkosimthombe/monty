@@ -1,29 +1,28 @@
 #include "monty.h"
 
 /**
- * opcode_rotr - the last node of stack_t head will be rotated
- * @stack: header stack
- * @line_counters: totala amount of line
+ * opcode_rotr - the stack to the bottom will be rotated
+ * @stack: head of stack
+ * @amount: line counter
  *
  * Return: nothing
  */
-void opcode_rotr(stack_t **stack, unsigned int line_counters)
+void opcode_rotr(stack_t **stack, __attribute__((unused)) unsigned int amount)
 {
-	stack_t *bottom;
-	stack_t *prev;
+	stack_t *cpy;
 
-	(void) line_counters;
-	if (!stack || !*stack || !(*stack)->next)
+	cpy = *stack;
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
 		return;
-	bottom = *stack;
-
-	while (bottom->next)
-		bottom = bottom->next;
-
-	prev = bottom->prev;
-	bottom->next = *stack;
-	bottom->prev = NULL;
-	prev->next = NULL;
-	(*stack)->prev = bottom;
-	*stack = bottom;
+	}
+	while (cpy->next)
+	{
+		cpy = cpy->next;
+	}
+	cpy->next = *stack;
+	cpy->prev->next = NULL;
+	cpy->prev = NULL;
+	(*stack)->prev = cpy;
+	(*stack) = cpy;
 }
