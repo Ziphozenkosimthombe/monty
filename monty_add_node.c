@@ -4,7 +4,7 @@
  * add_node - node will be add to the stack
  * @stack: head stack
  * @n: new value
- * 
+ *
  * Return: nothing
  */
 void add_node(stack_t **stack, int n)

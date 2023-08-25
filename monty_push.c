@@ -11,7 +11,7 @@ void opcode_push(stack_t **stack, unsigned int amount)
 {
 	int a, b = 0, flag = 0;
 
-	if ( bus.arg)
+	if (bus.arg)
 	{
 		if (bus.arg[0] == '-')
 			b++;

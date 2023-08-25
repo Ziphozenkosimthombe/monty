@@ -10,7 +10,7 @@ void opcode_add(stack_t **stack, unsigned int amount)
 {
 	stack_t *h;
 	int length = 0, au;
-	
+
 	h = *stack;
 	while (h)
 	{
