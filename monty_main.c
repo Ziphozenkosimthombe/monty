@@ -1,6 +1,6 @@
 #include "monty.h"
 
-bus_t bus = {NULL, NULL, NULL, 0};
+extern bus_t *get_bus(void);
 
 /**
  * main - interprete code for monty

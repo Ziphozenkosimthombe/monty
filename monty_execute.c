@@ -12,9 +12,7 @@
 int execute(char *content, stack_t **stack, unsigned int amount, FILE *file)
 {
 	instruction_t opst[] = {
-				{"push", opcode_push},
-				{"pall", opcode_pall},
-				{"pint", opcode_pint},
+				{"push", opcode_push}, {"pall", opcode_pall}, {"pint", opcode_pint},
 				{"pop", opcode_pop},
 				{"swap", opcode_swap},
 				{"add", opcode_add},
@@ -48,11 +46,9 @@ int execute(char *content, stack_t **stack, unsigned int amount, FILE *file)
 		a++;
 	}
 	if (op && opst[a].opcode == NULL)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", amount, op);
+	{ fprintf(stderr, "L%d: unknown instruction %s\n", amount, op);
 		fclose(file);
 		free(content);
 		free_stack(*stack);
 		exit(EXIT_FAILURE); }
-	return (1);
-}
+	return (1); }
