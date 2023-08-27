@@ -55,7 +55,6 @@ typedef struct bus_s
 }  bus_t;
 extern bus_t bus;
 
-bus_t *get_bus(void);
 void opcode_push(stack_t **stack, unsigned int amount);
 void opcode_pall(stack_t **stack, unsigned int amount);
 void opcode_pint(stack_t **stack, unsigned int amount);
