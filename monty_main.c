@@ -1,6 +1,6 @@
 #include "monty.h"
 
-bus_t bus = {NULL, NULL, NULL, 0};
+static bus_t bus = {NULL, NULL, NULL, 0};
 
 /**
  * main - interprete code for monty
@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 	unsigned int amount = 0;
+	bus_t *bus_ptr = get_bus();
 
 	if (argc != 2)
 	{
